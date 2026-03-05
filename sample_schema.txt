@@ -1,0 +1,4 @@
+The person is named {name}.
+They are {age} years old.
+The measured height is {height}.
+The measured weight is {weight}.
