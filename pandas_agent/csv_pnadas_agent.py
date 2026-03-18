@@ -2,7 +2,7 @@ import pandas as pd
 from langchain_experimental.agents import create_pandas_dataframe_agent
 from langchain_google_genai import ChatGoogleGenerativeAI
 import os
-
+from custom_agent import *
 
 # 2. Loading the data
 df = pd.read_csv("../sample.csv", encoding="utf-16")
@@ -25,18 +25,19 @@ If the user asks for a calculation, write the python code and execute it.
 Always verify that the column names exist before running the code.
 """
 
-agent = create_pandas_dataframe_agent(
-    llm, 
-    df, 
-    verbose=True, 
-    allow_dangerous_code=True,  # Critical for running Python code
-    prefix=custom_prefix
-)
+# agent = create_pandas_dataframe_agent(
+    # llm, 
+    # df, 
+    # verbose=True, 
+    # allow_dangerous_code=True,  # Critical for running Python code
+    # prefix=custom_prefix
+# )
 
-# 5. Example query
 query = "How many rows are there in the table and what is the average of the height column?"
-try:
-    response = agent.run(query)
-    print(f"\n--- System Response ---\n{response}")
-except Exception as e:
-    print(f"Error running the model: {e}")
+run_df_agent(llm, df, query)
+
+# try:
+    # response = agent.run(query)
+    # print(f"\n--- System Response ---\n{response}")
+# except Exception as e:
+    # print(f"Error running the model: {e}")
